@@ -16,50 +16,7 @@
 
 Для проверки на ошибки линтером используйте `npm run lint`.
 
-## Задания (Вариант I)
-
-#### Задача I.1
-
-Напишите функцию `getSumOfValues(prices)`, которая в качестве аргумента принимает объект с ценами и возвращает сумму его значений, не модифицируя его. 
-
-```js
-const pricesObject = {
-    price1: 100, 
-    price2: 150, 
-    price3: 200, 
-    price4: 100,
-}
-
-console.log(getSumOfValues(pricesObject))  // 550
-```
-
-#### Задача I.2
-
-Напишите функцию `generateArray(initialArray)`. Функция получает массив и должна модифицировать его таким образом, чтобы все объекты трансформировались в массивы со значениями свойств. Необходимо изменить текущий массив и вернуть его. Для проверки на объект можно использовать отрицание проверки `Array.isArray`.
-
-```js
-const data = [ [ 1 ], { id: 40 }, [ 100 ], [ 300 ], { part: 10 } ]
-
-console.log(generateArray(data)) // [ [ 1 ], [ 40 ], [ 100 ], [ 300 ], [ 10 ] ]
-console.log(data) // [ [ 1 ], [ 40 ], [ 100 ], [ 300 ], [ 10 ] ]
-```
-
-#### Задача I.3
-
-Напишите функцию `splitName(fullName)`, принимающую на вход полное имя и возвращающую объект по образцу, а также функцию `toSplittedNames(namesArray)`, принимающую на вход массив полных имен и выполняющую на них трансформацию функцией `splitName`.
-
-```js
-const nameExample = "John Al"
-const names = [
-    'Steven King',
-    'Oliver',
-    'Persius Master',
-]
-
-console.log(splitName(nameExample)) // { firstName: "John", lastName: "Al" }
-console.log(toSplittedNames(names)) // [ { firstName: "Steven", lastName: "King" }, { firstName: "Oliver" }, { firstName: "Persius", lastName: "Master" } ]
-
-```
+## Задания (Вариант II)
 
 #### Задача II.1
 
@@ -98,46 +55,6 @@ console.log(withMask(cards)) // [ '4000 **** **** 9499', '4000 **** **** 7379', 
 console.log(joinObjects({ id: 1 }, { status: 'draft', created: "2025-05-05" })) // { id: 1, status: "draft", created: "2025-05-05" }
 console.log(joinObjects({ id: 1, status: 'draft' }, { status: 'approved' })) // { id: 1, status: "approved" }
 ```
-
-#### Задача III.1
-
-Напишите функцию `logString(wordObjects)`, которая в качестве аргументов принимает неопределенное количество объектов с ключом `word` и выводит кумулятивную строку в консоль по примеру.
-
-```js
-logString({ word: "Hello" }, { word: "world!" }) // "Hello world!"
-logString({ word: "Hi" }, { word: "my" }, { word: "name" }, { word: "is..." }) // "Hi my name is..."
-```
-
-#### Задача III.2
-
-Напишите функцию `сheckObject(object, key)`, которая принимает на вход объект и название ключа. Ваша функция должна проверить, есть ли такой ключ в объекте, и вернуть ответ `true` или `false`.
-
-```js
-console.log(сheckObj({ id: 1, particle: 10 }, "particle"))  // true
-console.log(сheckObj({ id: 2: name: "tag" }), "tag")  // false
-```
-
-#### Задача III.3
-
-Напишите функцию `countPrices(data, currency)`, принимающую массив строк, потенциально относящихся к цене или стоимости, а также валюту (`RUB` либо `USD`). Функция должна вернуть количество строк, которые содержат символы "$" или "₽" (согласно выбранной валюте) с численным значением перед ним.
-
-Пример кода: 
-
-```js
-const prices = [
-    'Цена товара - 1200$',
-    'Цена не определена', 
-    '9999 ₽',
-    'Ценовая категория - больше 300$',
-    'Цена за услугу 500',
-    '150$',
-    'Оптовая цена - 201 ₽"
-]
-
-console.log(countPrices(prices, "RUB")) // 2
-console.log(countPrices(prices, "USD")) // 3
-```
-
 
 ## Критерии оценивания
 
