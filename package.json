@@ -1,13 +1,3 @@
 {
-  "type": "module",
-  "scripts": {
-    "dev": "node --watch src/sandbox.js",
-    "test": "vitest watch --reporter=dot",
-    "test:report": "vitest run",
-    "lint": "oxlint src --fix"
-  },
-  "devDependencies": {
-    "oxlint": "^1.23.0",
-    "vitest": "^3.2.4"
-  }
+  "type": "module"
 }
