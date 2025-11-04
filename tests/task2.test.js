@@ -1,36 +1,46 @@
-import { describe, test, expect, assert } from "vitest";
-import { calculateSum } from "../src/task2";
+import { describe, test, assert } from "vitest";
+import { withMask } from "../src/task2";
 
-describe("обработка особых случаев", () => {
-  test("[0.25] отсутствие данных", ({ annotate }) => {
-    annotate(0.25);
+describe("возвращает массив маскированных слов", () => {
+  test("[1.5] базовые случаи", ({ annotate }) => {
+    annotate(1.5);
 
-    expect(() => calculateSum([])).toThrowError(
-      "Передан пустой массив"
-    );
+    const data = [
+      '4000 0012 0056 9499',
+      '4000 0013 5456 7379',
+      '5000 0014 1456 9869'
+    ]
+
+    const expected = [
+      { initial: '4000 0012 0056 9499', masked: '4000 **** **** 9499' },
+      { initial: '4000 0013 5456 7379', masked: '4000 **** **** 7379' },
+      { initial: '5000 0014 1456 9869', masked: '5000 **** **** 9869' },
+    ]
+
+    assert.deepEqual(withMask(data), expected);
   });
 
-  test("[0.5] отсутствие корректных данных", ({ annotate }) => {
+  test("[0.5] пустой массив", ({
+    annotate,
+  }) => {
     annotate(0.5);
 
-    expect(() => calculateSum(['abc5', '5g'])).toThrowError(
-      "Отсутствуют численные данные"
-    );
+    assert.deepEqual(withMask([]), [], "Если подан пустой массив, требуется вернуть его же");
   });
 });
 
-test("[0.75] работает на базовых случаях", ({ annotate }) => {
-  annotate(0.75);
-
-  expect(calculateSum(['10.5', 'Строка', '5g', '15', '05'])).toBe(30.5)
-});
 
 test("[0.5] не модифицирует массив", ({ annotate }) => {
   annotate(0.5);
 
-  const values = ['10.5', 'Строка', '5g', '15', '05']
-  const expected = [...values]
+  const data = [
+    '4000 0012 0056 9499',
+    '4000 0013 5456 7379',
+    '5000 0014 1456 9869'
+  ]
 
-  calculateSum(values)
-  assert.deepEqual(values, expected)
+  const expected = [...data]
+
+  withMask(data)
+  assert.deepEqual(data, expected)
 });
