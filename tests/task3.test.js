@@ -1,31 +1,73 @@
 import { test, expect, vi } from "vitest";
-import { reverseArray } from "../src/task3";
+import { splitName, toSplittedNames } from "../src/task3";
 
 
-test("[1] выводит развернутый массив в консоль", ({ annotate }) => {
-  annotate(1);
+describe("функция splitName", () => {
+  test("[1] обрабатывает имя и фамилию", ({ annotate }) => {
+    annotate(1)
 
-  const spy = vi.spyOn(console, 'log')
+    const expected = {
+      firstName: "Steven",
+      lastName: "King"
+    }
 
-  const values = [1, 2, 3]
-  reverseArray(values)
+    expect(splitName("Steven King")).deepEqual(expected)
+  })
 
-  expect(spy).toHaveBeenCalledOnce()
-  expect(spy).toHaveBeenCalledWith([3, 2, 1])
-  
-  vi.restoreAllMocks()
-});
+  test("[0.5] обрабатывает имя", ({ annotate }) => {
+    annotate(0.5)
 
-test("[0.75] модифицирует массив на месте", ({ annotate }) => {
-  annotate(0.75);
+    expect(splitName("Oliver")).deepEqual({ firstName: "Oliver" })
+  })
+})
 
-  const spy = vi.spyOn(console, 'log')
+describe("функция toSplittedNames", () => {
+  test("[0.5] работает на базовых случаях", ({ annotate }) => {
+    annotate(1)
 
-  const values = [1, 2, 3]
-  reverseArray(values)
+    const names = [
+      'Steven King',
+      'Oliver',
+      'Persius Master',
+    ]
 
-  console.log(values)
-  expect(spy).toHaveBeenLastCalledWith([3, 2, 1])
+    const expected = [
+      { firstName: "Steven", lastName: "King" },
+      { firstName: "Oliver" },
+      { firstName: "Persius", lastName: "Master" }
+    ]
 
-  vi.restoreAllMocks()
-});
+    expect(toSplittedNames(names)).deepEqual(expected)
+  })
+
+  test("[0.5] использует функцию splitName и метод map", ({ annotate }) => {
+    annotate(0.5)
+
+    const names = [
+      'Steven King',
+      'Oliver',
+      'Persius Master',
+    ]
+
+    const spy = vi.spyOn(names, "map")
+
+    toSplittedNames(names)
+
+    expect(spy).toBeCalledWith(splitName)
+  })
+
+  test("[0.5] не модифицирует исходные данные", ({ annotate }) => {
+    annotate(0.5)
+
+    const names = [
+      'Steven King',
+      'Oliver',
+      'Persius Master',
+    ]
+
+    const expected = [...names]
+
+    toSplittedNames(names)
+    expect(names).deepEqual(expected)
+  })
+})

@@ -1,23 +1,38 @@
-import { assert, test } from "vitest";
-import { multipliedByN } from "../src/task1";
+import { assert, test, describe } from "vitest";
+import { getSumOfValues } from "../src/task1";
 
 
-test("[1] возвращает массив с перемноженными элементами", ({
+describe("возвращает сумму значений объекта", () => {
+  test("[1] базовые случаи", ({
+    annotate,
+  }) => {
+    annotate(1);
+    assert.deepEqual(getSumOfValues({ price1: 100, price2: 150, price3: 200 }), 450);
+    assert.deepEqual(getSumOfValues({ price1: 100, price2: 150 }), 250);
+  });
+
+  test("[0.5] единственное значение", ({
+    annotate,
+  }) => {
+    annotate(0.5);
+    assert.deepEqual(getSumOfValues({ price1: 100 }), 100);
+  });
+
+  test("[0.5] пустой объект", ({
+    annotate,
+  }) => {
+    annotate(0.5);
+    assert.deepEqual(getSumOfValues({}), 0);
+  });
+})
+
+
+test("[1] не модифицирует исходный объект", ({
   annotate,
 }) => {
   annotate(1);
 
-  assert.deepEqual(multipliedByN([1, 2.5, -5], 2), [2, 5.0, -10]);
-  assert.deepEqual(multipliedByN([0, 1, 2], 1.5), [0, 1.5, 3]);
-  assert.deepEqual(multipliedByN([], 2), []);
-});
-
-test("[0.5] не модифицирует исходный массив", ({
-  annotate,
-}) => {
-  annotate(0.5);
-
-  const initial = [1, 2, 3]
-  multipliedByN(initial, 2)
-  assert.deepEqual(initial, [1, 2, 3])
+  const initial = { price1: 100, price2: 150 }
+  getSumOfValues(initial)
+  assert.deepEqual(initial, { price1: 100, price2: 150 })
 });
