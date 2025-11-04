@@ -1,4 +1,4 @@
-import { test, expect, vi } from "vitest";
+import { test, expect, vi, describe, assert } from "vitest";
 import { splitName, toSplittedNames } from "../src/task3";
 
 
@@ -11,19 +11,19 @@ describe("функция splitName", () => {
       lastName: "King"
     }
 
-    expect(splitName("Steven King")).deepEqual(expected)
+    assert.deepEqual(splitName("Steven King"), expected)
   })
 
   test("[0.5] обрабатывает имя", ({ annotate }) => {
     annotate(0.5)
 
-    expect(splitName("Oliver")).deepEqual({ firstName: "Oliver" })
+    assert.deepEqual(splitName("Oliver"), { firstName: "Oliver" })
   })
 })
 
 describe("функция toSplittedNames", () => {
   test("[0.5] работает на базовых случаях", ({ annotate }) => {
-    annotate(1)
+    annotate(0.5)
 
     const names = [
       'Steven King',
@@ -37,7 +37,7 @@ describe("функция toSplittedNames", () => {
       { firstName: "Persius", lastName: "Master" }
     ]
 
-    expect(toSplittedNames(names)).deepEqual(expected)
+    assert.deepEqual(toSplittedNames(names), expected)
   })
 
   test("[0.5] использует функцию splitName и метод map", ({ annotate }) => {
@@ -68,6 +68,7 @@ describe("функция toSplittedNames", () => {
     const expected = [...names]
 
     toSplittedNames(names)
-    expect(names).deepEqual(expected)
+
+    assert.deepEqual(names, expected)
   })
 })

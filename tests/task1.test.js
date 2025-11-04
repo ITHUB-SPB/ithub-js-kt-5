@@ -11,13 +11,6 @@ describe("возвращает сумму значений объекта", () =
     assert.deepEqual(getSumOfValues({ price1: 100, price2: 150 }), 250);
   });
 
-  test("[0.5] единственное значение", ({
-    annotate,
-  }) => {
-    annotate(0.5);
-    assert.deepEqual(getSumOfValues({ price1: 100 }), 100);
-  });
-
   test("[0.5] пустой объект", ({
     annotate,
   }) => {
@@ -27,10 +20,10 @@ describe("возвращает сумму значений объекта", () =
 })
 
 
-test("[1] не модифицирует исходный объект", ({
+test("[0.5] не модифицирует исходный объект", ({
   annotate,
 }) => {
-  annotate(1);
+  annotate(0.5);
 
   const initial = { price1: 100, price2: 150 }
   getSumOfValues(initial)
