@@ -12,8 +12,8 @@
  * @example
  * const text = 'Действие "Создать случайный текст" создает случайные строки текста. В этой статье описаны функциональные возможности действия "Создать случайный...'
  * 
- * console.log(secondOccurenceInterval("Создать, text)) // { from: 117, to: 123 }
- * console.log(secondOccurenceInterval("поиск по главе, text)) // null
+ * console.log(secondOccurenceInterval("Создать", text)) // { from: 117, to: 123 }
+ * console.log(secondOccurenceInterval("поиск по главе", text)) // null
  */
 export function secondOccurenceInterval(substring, text) {
     return
