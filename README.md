@@ -2,7 +2,7 @@
 
 ## Установка и настройка
 
-Клонируйте репозиторий через `git clone https://github.com/ITHUB-SPB/ithub-js-kt-4.git`
+Клонируйте репозиторий через `git clone https://github.com/ITHUB-SPB/ithub-js-kt-5.git`
 
 Откройте директорию в `VS Code` (File -> Open Folder)
 
