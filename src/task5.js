@@ -1,16 +1,19 @@
 /**
- * @param {Object[]} args
- * @returns {Object}
+ * @param {String} infoString - Строка с информацией о возврате
+ * @returns {String} Форматированная с учетом локали строка
  *
- * @description Функция принимает на вход неопределенное
- * количество аргументов, каждый из которых является объектом
- * и возвращает единый объект по образцу
+ * @description Функция, принимающая на вход строку с информацией 
+ * о возврате книги в одном из указанных форматов и возвращающую 
+ * строку, отформатированную с учетом локали (en либо ru в 
+ * зависимости от имени клиента). 
  *
  * @example
- * const firstObject = { id: 1 }
- * const secondObject = { status: 'draft', created: "2025-05-05" }
- * joinObjects(firstObject, secondObject) // { id: 1, status: "draft", created: "2025-05-05" }
+ * formattedReturn("[2025-11-20T03:28:40] Joseph Mitchem <Wildlife of Australia>")
+ * // Joseph Mitchem returned "Wildlife of Australia" at 11/20/2025, 3:28:40 AM
+ * 
+ * formattedReturn("[2025-11-20T12:12:14] Михаил Ландау <Уроки пения>")
+ * // Михаил Ландау вернул "Уроки пения" 20.11.2025, 03:28:40
  */
-export function joinObjects(...args) {
-    return {}
+export function formattedReturn(infoString) {
+    return 
 }

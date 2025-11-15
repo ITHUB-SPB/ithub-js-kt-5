@@ -1,16 +1,14 @@
 /**
- * @param {Object[]} args
- * @returns {Object}
+ * @param {String[]} phones - Неформатированные тел. номера
+ * @returns {String[]} - Маскированные тел. номера
  *
- * @description Функция принимает на вход неопределенное
- * количество аргументов, каждый из которых является объектом
- * и возвращает единый объект по образцу
+ * @description Функция принимает на вход массив телефонных номеров и 
+ * модифицирует их на месте, превращая к виду `+код (ххх) ххх-хх-хх` 
  *
  * @example
- * const firstObject = { id: 1 }
- * const secondObject = { status: 'draft', created: "2025-05-05" }
- * joinObjects(firstObject, secondObject) // { id: 1, status: "draft", created: "2025-05-05" }
+ * const phones = ['+79111112233','+79111112244','+79111112255','+79111112266']
+ * console.log(phones) // ['+7 (911) 111-22-33', '+7 (911) 111-22-44', '+7 (911) 111-22-55', '+7 (911) 111-22-66']
  */
-export function joinObjects(...args) {
+export function formatPhones(phones) {
     return {}
 }

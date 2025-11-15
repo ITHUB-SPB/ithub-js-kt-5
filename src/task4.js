@@ -1,16 +1,14 @@
 /**
- * @param {Object[]} args
- * @returns {Object}
+ * @param {String} email - Адрес эл. почты
+ * @returns {{ login: string, domain: string, zone: string }}
  *
- * @description Функция принимает на вход неопределенное
- * количество аргументов, каждый из которых является объектом
- * и возвращает единый объект по образцу
+ * @description Напишите функцию
+ * почты и возвращает объект с логином, доменом и доменной зоной. 
  *
  * @example
- * const firstObject = { id: 1 }
- * const secondObject = { status: 'draft', created: "2025-05-05" }
- * joinObjects(firstObject, secondObject) // { id: 1, status: "draft", created: "2025-05-05" }
+ * const result = splitEmail("example@gmail.com")
+ * console.log(result) // { login: "example", domain: "gmail", zone: "com" }
  */
-export function joinObjects(...args) {
+export function formattedReturn(infoString) {
     return {}
 }
