@@ -1,15 +1,13 @@
 /**
- * @param {Object<string, number>} prices - Исходный объект
+ * @returns {number} Округленное количество часов
  *
- * @returns {number} Сумма значений объекта
- *
- * @description Функция принимает на вход объект с ценами
- * и возвращает сумму его значений, не модифицируя его
+ * @description Функция вычисляет количество часов
+ * с 1970 года и возвращает округленное по правилам
+ * математики значение
  *
  * @example
- * const pricesObject = { price1: 100, price2: 150 }
- * getSumOfValues(pricesObject)  // 250
+ * console.log(getUnixHours()) // 489780
  */
-export function getSumOfValues(prices) {
+export function getUnixHours() {
     return 0
 }

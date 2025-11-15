@@ -1,28 +1,17 @@
 /**
- * @param {String} fullName - Имя
- * @returns {{firstName: String, lastName?: String}}
+ * @param {String[]} emailArray - Массив строк
+ * @returns {{ [email: string]: boolean }}
  *
- * @description Функция принимает на вход полное
- * имя и возвращает объект по образцу
- *
- * @example
- * splitName("John Al") // { firstName: "John", lastName: "Al" }
- * splitName("Oliver") // { firstName: "Oliver" }
- */
-export function splitName(fullName) {
-    return
-}
-
-/**
- * @param {String[]} namesArray - Массив имён
- * @returns {{firstName: String, lastName?: String}[]}
- *
- * @description Функция принимает на вход массив имен и возвращает новый
- * массив, полученный их трансформацией функцией `splitName`
+ * @description Функция принимает на вход массив строк, потенциально
+ * являющихся адресами эл. почты и возвращает объект с информацией о
+ * валидности каждого из них. Критерии правильной почты возьмите из 
+ * исходного кода (не устанавливая ее, а скопировав нужную строку!) 
+ * любой из популярных библиотек для валидации (zod, valibot).
  *
  * @example
- * toSplittedNames(["John Al", "Oliver"]) // [{ firstName: "John", lastName: "Al" }, { firstName: "Oliver" }]
+ * const emails = ['top@dot.com', 'abra@gmailcom', 'pot.mail.ru', 'grek@pro.pro']
+ * { top@dot.com: true, abra@gmailcom: false , pot.mail.ru: false , grek@pro.pro: true }
  */
-export function toSplittedNames(namesArray) {
+export function validateEmails(emailArray) {
     return
 }

@@ -1,28 +1,20 @@
 /**
- * @param {String} fullName - Имя
- * @returns {{firstName: String, lastName?: String}}
+ * @param {String} substring - Подстрока для поиска
+ * @param {String} text - Исходная строка
+ * 
+ * @returns {{from: Number, to: Number} | null}
  *
- * @description Функция принимает на вход полное
- * имя и возвращает объект по образцу
- *
- * @example
- * splitName("John Al") // { firstName: "John", lastName: "Al" }
- * splitName("Oliver") // { firstName: "Oliver" }
- */
-export function splitName(fullName) {
-    return
-}
-
-/**
- * @param {String[]} namesArray - Массив имён
- * @returns {{firstName: String, lastName?: String}[]}
- *
- * @description Функция принимает на вход массив имен и возвращает новый
- * массив, полученный их трансформацией функцией `splitName`
+ * @description Функция принимает на вход подстроку для поиска
+ * и исходную строку, служит для нахождения второго вхождения 
+ * подстроки и возвращает диапазон в виде объекта { from, to } 
+ * либо null если оно не найдено.
  *
  * @example
- * toSplittedNames(["John Al", "Oliver"]) // [{ firstName: "John", lastName: "Al" }, { firstName: "Oliver" }]
+ * const text = 'Действие "Создать случайный текст" создает случайные строки текста. В этой статье описаны функциональные возможности действия "Создать случайный...'
+ * 
+ * console.log(secondOccurenceInterval("Создать, text)) // { from: 117, to: 123 }
+ * console.log(secondOccurenceInterval("поиск по главе, text)) // null
  */
-export function toSplittedNames(namesArray) {
+export function secondOccurenceInterval(substring, text) {
     return
 }

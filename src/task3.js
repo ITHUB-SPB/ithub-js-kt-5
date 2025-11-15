@@ -1,28 +1,18 @@
 /**
- * @param {String} fullName - Имя
- * @returns {{firstName: String, lastName?: String}}
+ * @param {String} date - Дата в виде строки
+ * @returns {String} - Строка с указанием формата даты
  *
- * @description Функция принимает на вход полное
- * имя и возвращает объект по образцу
- *
- * @example
- * splitName("John Al") // { firstName: "John", lastName: "Al" }
- * splitName("Oliver") // { firstName: "Oliver" }
- */
-export function splitName(fullName) {
-    return
-}
-
-/**
- * @param {String[]} namesArray - Массив имён
- * @returns {{firstName: String, lastName?: String}[]}
- *
- * @description Функция принимает на вход массив имен и возвращает новый
- * массив, полученный их трансформацией функцией `splitName`
+ * @description Функция принимает на вход дату в строковом
+ * отображении и возвращает информацию о ее формате. Постарайтесь
+ * использовать регулярные выражения и методы `match` либо `test`
+ * 
+ * @throws Ошибка при некорректном формате даты
  *
  * @example
- * toSplittedNames(["John Al", "Oliver"]) // [{ firstName: "John", lastName: "Al" }, { firstName: "Oliver" }]
+ * getDateFormat("2022/10/18") // Формат даты европейский
+ * getDateFormat("18.10.2022") // Формат даты российский
+ * getDateFormat("18.10/22")   // Error: некорректный формат даты
  */
-export function toSplittedNames(namesArray) {
+export function getDateFormat(date) {
     return
 }
