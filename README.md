@@ -2,14 +2,13 @@
 
 ## Установка и настройка
 
-Клонируйте репозиторий через `git clone https://github.com/ITHUB-SPB/ithub-js-kt-4.git`
+Клонируйте репозиторий через `git clone https://github.com/ITHUB-SPB/ithub-js-kt-5.git`
 
 Откройте директорию в `VS Code` (File -> Open Folder)
 
 Выберите ветку в соответствии с вашим вариантом: 
-- номера 1-9 по списку переключаются на ветку с вариантом 1 `git switch variant-1`
-- номера 10 - 18 по списку переключаются на ветку с вариантом 2 `git switch variant-2`
-- номера 19 - 30 по списку переключаются на ветку с вариантом 3 `git switch variant-3`
+- номера 1-14 по списку переключаются на ветку с вариантом 1 `git switch variant-1`
+- номера 15 - 30 по списку переключаются на ветку с вариантом 2 `git switch variant-2`
 
 Создайте ветку со своей фамилией: `git switch -c familiya`, сделайте первый пуш `git push -u origin familiya`.
 
