@@ -1,4 +1,4 @@
-import { describe, test, assert } from "vitest";
+import { describe, test, assert, vi } from "vitest";
 import { splitEmail } from "../src/task4";
 
 describe("возвращает информацию по емэйлу", () => {
@@ -42,5 +42,4 @@ describe("возвращает информацию по емэйлу", () => {
       assert.deepEqual(splitEmail(email), expected[email]);
     }
   });
-
 })

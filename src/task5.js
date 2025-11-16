@@ -12,8 +12,8 @@
  * // Joseph Mitchem returned "Wildlife of Australia" at 11/20/2025, 3:28:40 AM
  * 
  * formattedReturn("[2025-11-20T12:12:14] Михаил Ландау <Уроки пения>")
- * // Михаил Ландау вернул "Уроки пения" 20.11.2025, 03:28:40
+ * // Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14
  */
 export function formattedReturn(infoString) {
-    return 
+    return ''
 }

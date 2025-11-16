@@ -1,46 +1,23 @@
 import { describe, test, assert } from "vitest";
-import { withMask } from "../src/task2";
+import { formattedReturn } from "../src/task5";
 
-describe("возвращает массив маскированных слов", () => {
-  test("[1.5] базовые случаи", ({ annotate }) => {
-    annotate(1.5);
-
-    const data = [
-      '4000 0012 0056 9499',
-      '4000 0013 5456 7379',
-      '5000 0014 1456 9869'
-    ]
-
-    const expected = [
-      { initial: '4000 0012 0056 9499', masked: '4000 **** **** 9499' },
-      { initial: '4000 0013 5456 7379', masked: '4000 **** **** 7379' },
-      { initial: '5000 0014 1456 9869', masked: '5000 **** **** 9869' },
-    ]
-
-    assert.deepEqual(withMask(data), expected);
-  });
-
-  test("[0.5] пустой массив", ({
-    annotate,
-  }) => {
+describe("возвращает строку о возврате согласно локали", () => {
+  test.for([
+    ["[2025-11-20T03:28:40] Joseph Mitchem <Wildlife of Australia>", 'Joseph Mitchem returned "Wildlife of Australia" at 11/20/2025, 3:28:40 AM'],
+    ["[2020-05-15T13:00:00] Joseph Mitchem <Game of Thrones>", 'Joseph Mitchem returned "Game of Thrones" at 5/15/2020, 1:00:00 PM'],
+    ["[2000-01-10T10:30:00] Charles Dunmore <Creatures>", 'Charles Dunmore returned "Creatures" at 1/10/2000, 10:30:00 AM']
+  ])("[0.5] английская локаль", ([input, expected], { annotate }) => {
     annotate(0.5);
-
-    assert.deepEqual(withMask([]), [], "Если подан пустой массив, требуется вернуть его же");
+    assert.deepEqual(formattedReturn(input), expected);
   });
-});
 
+  test.for([
+    ["[2025-11-20T12:12:14] Михаил Ландау <Уроки пения>", 'Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14'],
+    ["[2020-05-15T13:00:00] Иван Иванов <Game of Thrones>", 'Иван Иванов вернул(а) "Game of Thrones" 15.05.2020, 13:00:00'],
+    ["[2000-01-10T10:30:00] Марианна Рыбакова <Creatures>", 'Марианна Рыбакова вернул(а) "Creatures" 10.01.2000, 10:30:00']
+  ])("[0.5] российская локаль", ([input, expected], { annotate }) => {
+    annotate(0.5);
+    assert.deepEqual(formattedReturn(input), expected);
+  });
 
-test("[0.5] не модифицирует массив", ({ annotate }) => {
-  annotate(0.5);
-
-  const data = [
-    '4000 0012 0056 9499',
-    '4000 0013 5456 7379',
-    '5000 0014 1456 9869'
-  ]
-
-  const expected = [...data]
-
-  withMask(data)
-  assert.deepEqual(data, expected)
 });

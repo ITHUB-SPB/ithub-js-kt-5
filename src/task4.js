@@ -10,5 +10,9 @@
  * console.log(result) // { login: "example", domain: "gmail", zone: "com" }
  */
 export function splitEmail(email) {
-    return {}
+    return {
+        login: '',
+        domain: '',
+        zone: ''
+    }
 }
