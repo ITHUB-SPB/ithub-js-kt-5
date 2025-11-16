@@ -2,8 +2,8 @@
  * @param {String} email - Адрес эл. почты
  * @returns {{ login: string, domain: string, zone: string }}
  *
- * @description Функция принимает на вход корректный адрес эл почты 
- * и возвращает объект с логином, доменом и доменной зоной. 
+ * @description Функция принимает на вход корректный адрес эл почты
+ * и возвращает объект с логином, доменом и доменной зоной.
  *
  * @example
  * const result = splitEmail("example@gmail.com")
@@ -13,6 +13,6 @@ export function splitEmail(email) {
     return {
         login: '',
         domain: '',
-        zone: ''
+        zone: '',
     }
 }
