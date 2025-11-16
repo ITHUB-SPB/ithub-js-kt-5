@@ -1,4 +1,4 @@
-import { describe, test, expect, assert, vi, beforeAll, beforeEach, afterEach } from "vitest";
+import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
 import { logDay } from "../src/task2";
 
 describe("выводит в консоль день недели заданной даты", () => {
