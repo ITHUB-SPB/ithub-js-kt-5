@@ -1,31 +1,27 @@
-import { assert, test, describe } from "vitest";
-import { getSumOfValues } from "../src/task1";
+import { expect, test, describe, vi, beforeEach, afterEach } from "vitest";
+import { getUnixHours } from "../src/task1";
 
 
-describe("возвращает сумму значений объекта", () => {
-  test("[1] базовые случаи", ({
-    annotate,
-  }) => {
-    annotate(1);
-    assert.deepEqual(getSumOfValues({ price1: 100, price2: 150, price3: 200 }), 450);
-    assert.deepEqual(getSumOfValues({ price1: 100, price2: 150 }), 250);
+describe("возвращает округленное число дней с начала 2000 года", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  })
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
-  test("[0.5] пустой объект", ({
+  test.for([
+    [2025, 10, 16, 14, 52, 489804],
+    [2010, 10, 15, 10, 10, 358279],
+  ])("new Date(%i, %i, %i, %i, %i) -> %i", ([year, monthIx, date, hour, minute, expected], {
     annotate,
   }) => {
     annotate(0.5);
-    assert.deepEqual(getSumOfValues({}), 0);
+
+    const fakeNow = new Date(year, monthIx, date, hour, minute);
+    vi.setSystemTime(fakeNow);
+
+    expect(getUnixHours()).toBe(expected);
   });
 })
-
-
-test("[0.5] не модифицирует исходный объект", ({
-  annotate,
-}) => {
-  annotate(0.5);
-
-  const initial = { price1: 100, price2: 150 }
-  getSumOfValues(initial)
-  assert.deepEqual(initial, { price1: 100, price2: 150 })
-});
