@@ -1,46 +1,24 @@
-import { describe, test, assert } from "vitest";
-import { withMask } from "../src/task2";
+import { describe, test, expect } from "vitest";
+import { isLeapDate } from "../src/task2";
 
-describe("возвращает массив маскированных слов", () => {
-  test("[1.5] базовые случаи", ({ annotate }) => {
-    annotate(1.5);
-
-    const data = [
-      '4000 0012 0056 9499',
-      '4000 0013 5456 7379',
-      '5000 0014 1456 9869'
-    ]
-
-    const expected = [
-      { initial: '4000 0012 0056 9499', masked: '4000 **** **** 9499' },
-      { initial: '4000 0013 5456 7379', masked: '4000 **** **** 7379' },
-      { initial: '5000 0014 1456 9869', masked: '5000 **** **** 9869' },
-    ]
-
-    assert.deepEqual(withMask(data), expected);
-  });
-
-  test("[0.5] пустой массив", ({
-    annotate,
-  }) => {
+describe("проверяет, високосный ли год у даты в ISO-формате", () => {
+  test("корректно определяет високосный год", ({ annotate }) => {
     annotate(0.5);
-
-    assert.deepEqual(withMask([]), [], "Если подан пустой массив, требуется вернуть его же");
+    expect(isLeapDate("2012-07-02T00:00:00.000+03:00")).toBe(true);
   });
-});
 
+  test("корректно определяет обычный год", ({ annotate }) => {
+    annotate(0.5);
+    expect(isLeapDate("2014-07-02T00:00:00.000+03:00")).toBe(false);
+  });
 
-test("[0.5] не модифицирует массив", ({ annotate }) => {
-  annotate(0.5);
+  test("работает для годов, кратных 100 но не кратных 400", ({ annotate }) => {
+    annotate(0.5);
+    expect(isLeapDate("2100-07-02T00:00:00.000+03:00")).toBe(false);
+  });
 
-  const data = [
-    '4000 0012 0056 9499',
-    '4000 0013 5456 7379',
-    '5000 0014 1456 9869'
-  ]
-
-  const expected = [...data]
-
-  withMask(data)
-  assert.deepEqual(data, expected)
-});
+  test("работает для годов, кратных 400", ({ annotate }) => {
+    annotate(0.5);
+    expect(isLeapDate("2000-07-02T00:00:00.000+03:00")).toBe(true);
+  });
+})

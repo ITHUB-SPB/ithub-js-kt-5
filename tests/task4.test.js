@@ -5,8 +5,7 @@ describe("возвращает информацию по емэйлу", () => {
   test.for([
     ['admin@example.com', 'admin', 'example', 'com'],
     ['инфо@кремль.рф', 'инфо', 'кремль', 'рф'],
-    ['orders@ozon.ru', 'orders', 'ozon', 'ru']
-  ])("[1.5] базовые случаи: %s", ([email, login, domain, zone], { annotate }) => {
+  ])("[1] базовые случаи: %s", ([email, login, domain, zone], { annotate }) => {
     annotate(0.5);
     assert.deepEqual(splitEmail(email), { login, domain, zone });
   });
