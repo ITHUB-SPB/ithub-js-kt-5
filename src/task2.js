@@ -11,5 +11,5 @@
  * logDate(new Date()) // Сегодня вторник
  */
 export function logDay(date) {
-    return 0
+    
 }

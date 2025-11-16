@@ -1,32 +1,60 @@
-import { describe, test, expect, assert } from "vitest";
-import { generateArray } from "../src/task2";
+import { describe, test, expect, assert, vi, beforeAll, beforeEach, afterEach } from "vitest";
+import { logDay } from "../src/task2";
 
-describe("возвращает массив с объектами, преобразованными в массивы значений", () => {
-  test("[1] множественные свойства", ({ annotate }) => {
-    annotate(1);
+describe("выводит в консоль день недели заданной даты", () => {
+  afterEach(() => {
+    vi.resetAllMocks()
+  })
 
-    const data = [[1], { id: 40, part: 10 }, [100]]
-    const expected = [[1], [40, 10], [100]]
+  test.for([
+    ['понедельник', '2025-11-10T10:00:00', 'Понедельник'],
+    ['вторник', '2025-11-11T10:00:00', 'Вторник'],
+    ['среда', '2025-11-12T10:00:00', 'Среда'],
+    ['четверг', '2025-11-13T10:00:00', 'Четверг'],
+    ['пятница', '2025-11-14T10:00:00', 'Пятница'],
+    ['суббота', '2025-11-15T10:00:00', 'Суббота'],
+    ['воскресенье', '2025-11-09T10:00:00', 'Воскресенье'],
+  ])("[0.875] работает со всеми днями недели: %s", ([_, isoDate, expected], { annotate }) => {
+    annotate(0.125);
 
-    assert.deepEqual(generateArray(data), expected)
-  });
-
-  test("[1] множественные объекты", ({ annotate }) => {
-    annotate(1);
-
-    const data = [[1], { id: 40 }, [100], { part: 10 }]
-    const expected = [[1], [40], [100], [10]]
-
-    assert.deepEqual(generateArray(data), expected)
+    const spy = vi.spyOn(console, 'log')
+    
+    logDay(new Date(isoDate))
+    
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith(expected)
   });
 });
 
-test("[1] модифицирует исходный массив", ({ annotate }) => {
-  annotate(1);
+describe("использует особый формат для сегодняшнего дня", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  })
 
-  const data = [[1], { id: 40 }, [100], { part: 10 }]
-  const expected = [[1], [40], [100], [10]]
+  afterEach(() => {
+    vi.resetAllMocks()
+    vi.useRealTimers();
+  })
 
-  generateArray(data)
-  assert.deepEqual(data, expected)
-});
+  test.for([
+    ['понедельник', '2025-11-10T10:00:00', 'Сегодня понедельник'],
+    ['вторник', '2025-11-11T10:00:00', 'Сегодня вторник'],
+    ['среда', '2025-11-12T10:00:00', 'Сегодня среда'],
+    ['четверг', '2025-11-13T10:00:00', 'Сегодня четверг'],
+    ['пятница', '2025-11-14T10:00:00', 'Сегодня пятница'],
+    ['суббота', '2025-11-15T10:00:00', 'Сегодня суббота'],
+    ['воскресенье', '2025-11-09T10:00:00', 'Сегодня воскресенье'],
+  ])("[0.875] %s", ([_, isoDate, expected], { annotate }) => {
+    annotate(0.125);
+
+    const spy = vi.spyOn(console, 'log')
+
+    const date = new Date(isoDate)
+    vi.setSystemTime(date);
+
+    logDay(date)
+
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith(expected)
+  });
+})
