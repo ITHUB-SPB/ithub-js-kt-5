@@ -41,6 +41,6 @@ export default class CustomReporter extends DefaultReporter {
       .join('\n')
 
     console.log(`\n----- Scores -----\n\n${scoresString}`)
-    console.log(`\n----- Final Score -----\n\n${this.#score} / 8\n\n`)
+    console.log(`\n----- Final Score -----\n\n${this.#score} / 12\n\n`)
   }
 }
