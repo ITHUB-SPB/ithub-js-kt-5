@@ -1,46 +1,46 @@
 import { describe, test, assert } from "vitest";
-import { withMask } from "../src/task2";
+import { splitEmail } from "../src/task4";
 
-describe("возвращает массив маскированных слов", () => {
-  test("[1.5] базовые случаи", ({ annotate }) => {
-    annotate(1.5);
+describe("возвращает информацию по емэйлу", () => {
+  test("[1] базовые случаи", ({ annotate }) => {
+    annotate(1);
 
-    const data = [
-      '4000 0012 0056 9499',
-      '4000 0013 5456 7379',
-      '5000 0014 1456 9869'
-    ]
+    const expected = {
+      'admin@example.com': { login: 'admin', domain: 'example', zone: 'com' },
+      'инфо@кремль.рф': { login: 'инфо', domain: 'кремль', zone: 'рф' },
+      'orders@ozon.ru': { login: 'orders', domain: 'ozon', zone: 'ru' }
+    }
 
-    const expected = [
-      { initial: '4000 0012 0056 9499', masked: '4000 **** **** 9499' },
-      { initial: '4000 0013 5456 7379', masked: '4000 **** **** 7379' },
-      { initial: '5000 0014 1456 9869', masked: '5000 **** **** 9869' },
-    ]
-
-    assert.deepEqual(withMask(data), expected);
+    for (const email in expected) {
+      assert.deepEqual(splitEmail(email), expected[email]);
+    }
   });
 
-  test("[0.5] пустой массив", ({
-    annotate,
-  }) => {
-    annotate(0.5);
+  test("[1] комплексные доменные зоны", ({ annotate }) => {
+    annotate(1);
 
-    assert.deepEqual(withMask([]), [], "Если подан пустой массив, требуется вернуть его же");
+    const expected = {
+      'king@palace.co.uk': { login: 'king', domain: 'palace', zone: 'co.uk' },
+      'contact@edu.gov.ru': { login: 'contact', domain: 'edu', zone: 'gov.ru' },
+    }
+
+    for (const email in expected) {
+      assert.deepEqual(splitEmail(email), expected[email]);
+    }
   });
-});
 
+  test("[1] комплексные логины", ({ annotate }) => {
+    annotate(1);
 
-test("[0.5] не модифицирует массив", ({ annotate }) => {
-  annotate(0.5);
+    const expected = {
+      'ivan.ivanov@booking.com': { login: 'ivan.ivanov', domain: 'booking', zone: 'com' },
+      'иван.иванов@рыбалка.рф': { login: 'иван.иванов', domain: 'рыбалка', zone: 'рф' },
+      'security_notifier@github.com': { login: 'security_notifier', domain: 'github', zone: 'com' }
+    }
 
-  const data = [
-    '4000 0012 0056 9499',
-    '4000 0013 5456 7379',
-    '5000 0014 1456 9869'
-  ]
+    for (const email in expected) {
+      assert.deepEqual(splitEmail(email), expected[email]);
+    }
+  });
 
-  const expected = [...data]
-
-  withMask(data)
-  assert.deepEqual(data, expected)
-});
+})
