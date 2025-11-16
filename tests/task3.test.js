@@ -1,74 +1,29 @@
 import { test, expect, vi, describe, assert } from "vitest";
-import { splitName, toSplittedNames } from "../src/task3";
+import { getDateFormat } from "../src/task3";
 
 
-describe("функция splitName", () => {
-  test("[1] обрабатывает имя и фамилию", ({ annotate }) => {
-    annotate(1)
-
-    const expected = {
-      firstName: "Steven",
-      lastName: "King"
-    }
-
-    assert.deepEqual(splitName("Steven King"), expected)
-  })
-
-  test("[0.5] обрабатывает имя", ({ annotate }) => {
+describe("возвращает информацию о формате даты", () => {
+  test.for([
+    "2022/10/18", "2022/12/10"
+  ])("[1] определяет европейский формат", (dateString, { annotate }) => {
     annotate(0.5)
 
-    assert.deepEqual(splitName("Oliver"), { firstName: "Oliver" })
-  })
-})
-
-describe("функция toSplittedNames", () => {
-  test("[0.5] работает на базовых случаях", ({ annotate }) => {
-    annotate(0.5)
-
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
-
-    const expected = [
-      { firstName: "Steven", lastName: "King" },
-      { firstName: "Oliver" },
-      { firstName: "Persius", lastName: "Master" }
-    ]
-
-    assert.deepEqual(toSplittedNames(names), expected)
+    expect(getDateFormat(dateString)).toBe("Формат даты европейский")
   })
 
-  test("[0.5] использует функцию splitName и метод map", ({ annotate }) => {
+  test.for([
+    "18.10.2022", "10.12.2022"
+  ])("[1] определяет российский формат", (dateString, { annotate }) => {
     annotate(0.5)
 
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
-
-    const spy = vi.spyOn(names, "map")
-
-    toSplittedNames(names)
-
-    expect(spy).toBeCalledWith(splitName)
+    expect(getDateFormat(dateString)).toBe("Формат даты российский")
   })
 
-  test("[0.5] не модифицирует исходные данные", ({ annotate }) => {
-    annotate(0.5)
+  test.for([
+    "10.14.2022", "2022/18/10", "1.8.2022" 
+  ])("[0.75] определяет некорректный формат", (dateString, { annotate }) => {
+    annotate(0.25)
 
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
-
-    const expected = [...names]
-
-    toSplittedNames(names)
-
-    assert.deepEqual(names, expected)
+    expect(() => getDateFormat(dateString)).throws("Формат даты российский")
   })
 })

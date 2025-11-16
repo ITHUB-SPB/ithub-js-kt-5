@@ -14,5 +14,5 @@
  * getDateFormat("18.10/22")   // Error: некорректный формат даты
  */
 export function getDateFormat(date) {
-    return
+    
 }
