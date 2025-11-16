@@ -1,45 +1,29 @@
-import { describe, test, assert, vi } from "vitest";
+import { describe, test, assert } from "vitest";
 import { splitEmail } from "../src/task4";
 
 describe("возвращает информацию по емэйлу", () => {
-  test("[1] базовые случаи", ({ annotate }) => {
-    annotate(1);
-
-    const expected = {
-      'admin@example.com': { login: 'admin', domain: 'example', zone: 'com' },
-      'инфо@кремль.рф': { login: 'инфо', domain: 'кремль', zone: 'рф' },
-      'orders@ozon.ru': { login: 'orders', domain: 'ozon', zone: 'ru' }
-    }
-
-    for (const email in expected) {
-      assert.deepEqual(splitEmail(email), expected[email]);
-    }
+  test.for([
+    ['admin@example.com', 'admin', 'example', 'com'],
+    ['инфо@кремль.рф', 'инфо', 'кремль', 'рф'],
+    ['orders@ozon.ru', 'orders', 'ozon', 'ru']
+  ])("[1.5] базовые случаи: %s", ([email, login, domain, zone], { annotate }) => {
+    annotate(0.5);
+    assert.deepEqual(splitEmail(email), { login, domain, zone });
   });
 
-  test("[1] комплексные доменные зоны", ({ annotate }) => {
-    annotate(1);
-
-    const expected = {
-      'king@palace.co.uk': { login: 'king', domain: 'palace', zone: 'co.uk' },
-      'contact@edu.gov.ru': { login: 'contact', domain: 'edu', zone: 'gov.ru' },
-    }
-
-    for (const email in expected) {
-      assert.deepEqual(splitEmail(email), expected[email]);
-    }
+  test.for([
+    ['king@palace.co.uk', 'king', 'palace', 'co.uk'],
+    ['contact@edu.gov.ru', 'contact', 'edu', 'gov.ru']
+  ])("[1] комплексные доменные зоны: %s", ([email, login, domain, zone], { annotate }) => {
+    annotate(0.5);
+    assert.deepEqual(splitEmail(email), { login, domain, zone });
   });
 
-  test("[1] комплексные логины", ({ annotate }) => {
-    annotate(1);
-
-    const expected = {
-      'ivan.ivanov@booking.com': { login: 'ivan.ivanov', domain: 'booking', zone: 'com' },
-      'иван.иванов@рыбалка.рф': { login: 'иван.иванов', domain: 'рыбалка', zone: 'рф' },
-      'security_notifier@github.com': { login: 'security_notifier', domain: 'github', zone: 'com' }
-    }
-
-    for (const email in expected) {
-      assert.deepEqual(splitEmail(email), expected[email]);
-    }
+  test.for([
+    ['security_notifier@github.com', 'security_notifier', 'github', 'com'],
+    ['иван.иванов@рыбалка.рф', 'иван.иванов', 'рыбалка', 'рф']
+  ])("[1] комплексные логины: %s", ({ annotate }) => {
+    annotate(0.5);
+    assert.deepEqual(splitEmail(email), { login, domain, zone });
   });
 })
