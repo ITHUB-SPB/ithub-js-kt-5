@@ -1,74 +1,38 @@
 import { test, expect, vi, describe, assert } from "vitest";
-import { splitName, toSplittedNames } from "../src/task3";
+import { validateEmails } from "../src/task4";
 
 
-describe("функция splitName", () => {
-  test("[1] обрабатывает имя и фамилию", ({ annotate }) => {
-    annotate(1)
+describe("функция validateEmails", () => {
+  test("[1.5] работает на базовых случаях", ({ annotate }) => {
+    annotate(1.5)
 
-    const expected = {
-      firstName: "Steven",
-      lastName: "King"
-    }
+    const emails = ['top@dot.com', 'abra@gmailcom', 'pot.mail.ru', 'grek@pro.pro']
+    const expected = { "top@dot.com": true, "abra@gmailcom": false , "pot.mail.ru": false , "grek@pro.pro": true }
 
-    assert.deepEqual(splitName("Steven King"), expected)
+    assert.deepEqual(validateEmails(emails), expected)
   })
 
-  test("[0.5] обрабатывает имя", ({ annotate }) => {
+  test("[0.5] использует map либо reduce", ({ annotate }) => {
     annotate(0.5)
 
-    assert.deepEqual(splitName("Oliver"), { firstName: "Oliver" })
-  })
-})
+    const emails = ['top@dot.com', 'abra@gmailcom']
 
-describe("функция toSplittedNames", () => {
-  test("[0.5] работает на базовых случаях", ({ annotate }) => {
-    annotate(0.5)
+    const spyMap = vi.spyOn(emails, "map").mockImplementation(() => {})
+    const spyReduce = vi.spyOn(emails, "reduce").mockImplementation(() => {})
 
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
+    validateEmails(emails)
 
-    const expected = [
-      { firstName: "Steven", lastName: "King" },
-      { firstName: "Oliver" },
-      { firstName: "Persius", lastName: "Master" }
-    ]
-
-    assert.deepEqual(toSplittedNames(names), expected)
-  })
-
-  test("[0.5] использует функцию splitName и метод map", ({ annotate }) => {
-    annotate(0.5)
-
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
-
-    const spy = vi.spyOn(names, "map")
-
-    toSplittedNames(names)
-
-    expect(spy).toBeCalledWith(splitName)
+    expect(spyMap.mock.calls.length + spyReduce.mock.calls.length).toBeGreaterThanOrEqual(1)
   })
 
   test("[0.5] не модифицирует исходные данные", ({ annotate }) => {
     annotate(0.5)
 
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
+    const emails = ['top@dot.com', 'abra@gmailcom']
+    const expected = [...emails]
 
-    const expected = [...names]
+    validateEmails(names)
 
-    toSplittedNames(names)
-
-    assert.deepEqual(names, expected)
+    assert.deepEqual(emails, expected)
   })
 })
