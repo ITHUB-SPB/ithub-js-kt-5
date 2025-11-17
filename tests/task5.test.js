@@ -1,74 +1,41 @@
-import { test, expect, vi, describe, assert } from "vitest";
-import { splitName, toSplittedNames } from "../src/task3";
+import { test, describe, assert } from "vitest";
+import { secondOccurenceInterval } from "../src/task5";
 
 
-describe("функция splitName", () => {
-  test("[1] обрабатывает имя и фамилию", ({ annotate }) => {
-    annotate(1)
-
-    const expected = {
-      firstName: "Steven",
-      lastName: "King"
-    }
-
-    assert.deepEqual(splitName("Steven King"), expected)
-  })
-
-  test("[0.5] обрабатывает имя", ({ annotate }) => {
+describe("функция secondOccurenceInterval", () => {
+  test("[0.5] случай отсутствие совпадений", ({ annotate }) => {
     annotate(0.5)
 
-    assert.deepEqual(splitName("Oliver"), { firstName: "Oliver" })
-  })
-})
+    const text = '' // TODO
+    const expected = {} // TODO
 
-describe("функция toSplittedNames", () => {
-  test("[0.5] работает на базовых случаях", ({ annotate }) => {
-    annotate(0.5)
-
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
-
-    const expected = [
-      { firstName: "Steven", lastName: "King" },
-      { firstName: "Oliver" },
-      { firstName: "Persius", lastName: "Master" }
-    ]
-
-    assert.deepEqual(toSplittedNames(names), expected)
+    assert.deepEqual(secondOccurenceInterval(text), expected)
   })
 
-  test("[0.5] использует функцию splitName и метод map", ({ annotate }) => {
+  test("[0.5] одно совпадение", ({ annotate }) => {
     annotate(0.5)
 
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
+    const text = '' // TODO
+    const expected = {} // TODO
 
-    const spy = vi.spyOn(names, "map")
-
-    toSplittedNames(names)
-
-    expect(spy).toBeCalledWith(splitName)
+    assert.deepEqual(secondOccurenceInterval(text), expected)
   })
 
-  test("[0.5] не модифицирует исходные данные", ({ annotate }) => {
+  test("[0.5] два совпадения", ({ annotate }) => {
     annotate(0.5)
 
-    const names = [
-      'Steven King',
-      'Oliver',
-      'Persius Master',
-    ]
+    const text = '' // TODO
+    const expected = {} // TODO
 
-    const expected = [...names]
+    assert.deepEqual(secondOccurenceInterval(text), expected)
+  })
 
-    toSplittedNames(names)
+  test("[0.5] более двух совпадений", ({ annotate }) => {
+    annotate(0.5)
 
-    assert.deepEqual(names, expected)
+    const text = '' // TODO
+    const expected = {} // TODO
+
+    assert.deepEqual(secondOccurenceInterval(text), expected)
   })
 })
