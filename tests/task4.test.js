@@ -21,7 +21,7 @@ describe("возвращает информацию по емэйлу", () => {
   test.for([
     ['security_notifier@github.com', 'security_notifier', 'github', 'com'],
     ['иван.иванов@рыбалка.рф', 'иван.иванов', 'рыбалка', 'рф']
-  ])("[1] комплексные логины: %s", ({ annotate }) => {
+  ])("[1] комплексные логины: %s", ([email, login, domain, zone], { annotate }) => {
     annotate(0.5);
     assert.deepEqual(splitEmail(email), { login, domain, zone });
   });

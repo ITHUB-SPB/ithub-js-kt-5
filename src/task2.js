@@ -12,6 +12,12 @@
  * console.log(isLeapDate(date)) // true
  *
  */
+
 export function isLeapDate(isoDate) {
-    return
+    const year = new Date(isoDate).getFullYear()
+    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+        return true
+    } else {
+        return false
+    }
 }

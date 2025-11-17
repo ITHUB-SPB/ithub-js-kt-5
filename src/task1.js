@@ -7,6 +7,7 @@
  * @example
  * console.log(daysFromMillenium()) // 7638
  */
+
 export function daysFromMillenium() {
-    return 0
+    return Math.round(((new Date() - new Date(2000, 0, 1, 0, 0)) / (1000 * 60 * 60 * 24)))
 }
