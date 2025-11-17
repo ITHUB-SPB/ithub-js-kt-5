@@ -1,4 +1,4 @@
-import { test, expect, vi, describe, assert } from "vitest";
+import { test, expect, describe } from "vitest";
 import { getDateFormat } from "../src/task3";
 
 
@@ -24,6 +24,6 @@ describe("возвращает информацию о формате даты",
   ])("[0.75] определяет некорректный формат", (dateString, { annotate }) => {
     annotate(0.25)
 
-    expect(() => getDateFormat(dateString)).throws("Формат даты российский")
+    expect(() => getDateFormat(dateString)).throws("Некорректный формат даты")
   })
 })

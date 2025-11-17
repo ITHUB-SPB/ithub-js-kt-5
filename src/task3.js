@@ -11,7 +11,7 @@
  * @example
  * getDateFormat("2022/10/18") // Формат даты европейский
  * getDateFormat("18.10.2022") // Формат даты российский
- * getDateFormat("18.10/22")   // Error: некорректный формат даты
+ * getDateFormat("18.10/22")   // Error: Некорректный формат даты
  */
 export function getDateFormat(date) {
     
