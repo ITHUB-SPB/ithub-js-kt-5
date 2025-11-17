@@ -11,7 +11,7 @@
  */
 
 export function splitEmail(email) {
-    const filteredEmail = email.match(/([а-яa-z._]+)@([а-яa-z]+)\.(.*)/)
+    const filteredEmail = email.match(/([\p{L}._]+)@([\p{L}]+)\.(.*)/iu)
 
     return {
         login: filteredEmail[1],
