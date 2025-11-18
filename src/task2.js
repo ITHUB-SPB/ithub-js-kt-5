@@ -11,5 +11,11 @@
  * logDate(new Date()) // Сегодня вторник
  */
 export function logDay(date) {
+    const days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    const day= days[date.getDay()];
+
+    const today = new Date();
     
+    const isToday = today.toDateString() === date.toDateString();
+    console.log(isToday ? `Сегодня ${day.toLowerCase()}` : day)
 }
