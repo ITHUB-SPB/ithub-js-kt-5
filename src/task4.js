@@ -13,5 +13,9 @@
  * { top@dot.com: true, abra@gmailcom: false , pot.mail.ru: false , grek@pro.pro: true }
  */
 export function validateEmails(emailArray) {
-    return
+    return emailArray.reduce((acc, x) => {
+        /* from: https://github.com/colinhacks/zod/blob/50bba5462546401939920a6566a81c0d9c8ef7e1/packages/zod/src/v4/core/regexes.ts#L37 */
+        acc[x] = /^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/.test(x)
+        return acc
+    }, {})
 }
