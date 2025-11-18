@@ -7,35 +7,39 @@ describe("функция secondOccurenceInterval", () => {
     annotate(0.5)
 
     const text = '' // TODO
+    const substring = '' // TODO
     const expected = {} // TODO
 
-    assert.deepEqual(secondOccurenceInterval(text), expected)
+    assert.deepEqual(secondOccurenceInterval(substring, text), expected)
   })
 
   test("[0.5] одно совпадение", ({ annotate }) => {
     annotate(0.5)
 
     const text = '' // TODO
+    const substring = '' // TODO
     const expected = {} // TODO
 
-    assert.deepEqual(secondOccurenceInterval(text), expected)
+    assert.deepEqual(secondOccurenceInterval(substring, text), expected)
   })
 
   test("[0.5] два совпадения", ({ annotate }) => {
     annotate(0.5)
 
     const text = '' // TODO
+    const substring = '' // TODO
     const expected = {} // TODO
 
-    assert.deepEqual(secondOccurenceInterval(text), expected)
+    assert.deepEqual(secondOccurenceInterval(substring, text), expected)
   })
 
   test("[0.5] более двух совпадений", ({ annotate }) => {
     annotate(0.5)
 
     const text = '' // TODO
+    const substring = '' // TODO
     const expected = {} // TODO
 
-    assert.deepEqual(secondOccurenceInterval(text), expected)
+    assert.deepEqual(secondOccurenceInterval(substring, text), expected)
   })
 })
