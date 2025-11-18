@@ -14,28 +14,23 @@
  * getDateFormat("18.10/22")   // Error: Некорректный формат даты
  */
 export function getDateFormat(date) {
-    const euFormat = /^(\d{4})\/(\d{2})\/(\d{2})$/
-	const ruFormat = /^(\d{2})\.(\d{2})\.(\d{4})$/
+	const formats = {
+		"европейский": /^(\d{4})\/(\d{2})\/(\d{2})$/,
+		"российский": /^(\d{2})\.(\d{2})\.(\d{4})$/
+	};
 
-	let match, format, year, month, day
+	for (const [format, regex] of Object.entries(formats)) {
+		const match = date.match(regex)
+		if (match) {
+			const month = parseInt(match[2], 10)
 
-	if (match = date.match(euFormat)) {
-		[, year, month, day] = match
-		format = "европейский"
-	} else if (match = date.match(ruFormat)) {
-		[, year, month, day] = match
-		format = "российский"
-	} else {
-		throw new Error("Некорректный формат даты")
+			if (month < 1 || month > 12) {
+				throw new Error("Некорректный формат даты")
+			}
+
+			return `Формат даты ${format}`
+		}
 	}
 
-	year = parseInt(year, 10)
-	month = parseInt(month, 10)
-	day = parseInt(day, 10)
-
-	if (month < 1 || month > 12) {
-		throw new Error("Некорректный формат даты")
-	}
-	
-	return "Формат даты " + format
+	throw new Error("Некорректный формат даты")
 }
