@@ -4,14 +4,20 @@
  *
  * @description Функция принимает на вход массив строк, потенциально
  * являющихся адресами эл. почты и возвращает объект с информацией о
- * валидности каждого из них. Критерии правильной почты возьмите из 
- * исходного кода (не устанавливая ее, а скопировав нужную строку!) 
+ * валидности каждого из них. Критерии правильной почты возьмите из
+ * исходного кода (не устанавливая ее, а скопировав нужную строку!)
  * любой из популярных библиотек для валидации (zod, valibot).
  *
  * @example
  * const emails = ['top@dot.com', 'abra@gmailcom', 'pot.mail.ru', 'grek@pro.pro']
  * { top@dot.com: true, abra@gmailcom: false , pot.mail.ru: false , grek@pro.pro: true }
  */
+export function validateEmails1(email) {
+    const emailFormat =
+        /^[\w+-]+(?:\.[\w+-]+)*@[\da-z]+(?:[.-][\da-z]+)*\.[a-z]{2,}$/iu
+    return { [email]: emailFormat.test(email) }
+}
+
 export function validateEmails(emailArray) {
-    return
+    return emailArray.map(validateEmails1)
 }
