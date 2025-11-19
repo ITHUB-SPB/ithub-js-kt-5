@@ -5,7 +5,7 @@
  * @description Функция принимает на вход дату в строковом
  * отображении и возвращает информацию о ее формате. Постарайтесь
  * использовать регулярные выражения и методы `match` либо `test`.
- * 
+ *
  * @throws Ошибка при некорректном формате даты
  *
  * @example
@@ -16,11 +16,11 @@
 export function getDateFormat(date) {
     const rus = /^\d{2}\.\d{2}\.\d{4}$/
     const euro = /^\d{4}\/\d{2}\/\d{2}$/
-    if ( rus.test(date)){
-        return "Формат даты российский"
-    }else if(euro.test(date)){
-        return "Формат даты европейский"
-    }else{
-        throw new Error("Некорректный формат даты")
+    if (rus.test(date)) {
+        return 'Формат даты российский'
+    } else if (euro.test(date)) {
+        return 'Формат даты европейский'
+    } else {
+        throw new Error('Некорректный формат даты')
     }
 }

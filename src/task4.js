@@ -13,5 +13,10 @@
  * { top@dot.com: true, abra@gmailcom: false , pot.mail.ru: false , grek@pro.pro: true }
  */
 export function validateEmails(emailArray) {
-    return
+  const regex = /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i;
+
+  return emailArray.reduce((acc, email) => {
+    acc[email] = regex.test(email);
+    return acc;
+  }, {})
 }
