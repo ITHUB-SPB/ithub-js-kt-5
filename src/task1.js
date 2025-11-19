@@ -1,4 +1,4 @@
-/**
+/** task1
  * @returns {number} Округленное количество часов
  *
  * @description Функция вычисляет количество часов
@@ -9,5 +9,8 @@
  * console.log(getUnixHours()) // 489780
  */
 export function getUnixHours() {
-    return 0
+    const now = new Date()
+    const millisec = 1000 * 60 * 60;
+    return Math.round(now/millisec);
+
 }
