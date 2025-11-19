@@ -12,12 +12,13 @@
  * const emails = ['top@dot.com', 'abra@gmailcom', 'pot.mail.ru', 'grek@pro.pro']
  * { top@dot.com: true, abra@gmailcom: false , pot.mail.ru: false , grek@pro.pro: true }
  */
-export function validateEmails1(email) {
-    const emailFormat =
-        /^[\w+-]+(?:\.[\w+-]+)*@[\da-z]+(?:[.-][\da-z]+)*\.[a-z]{2,}$/iu
-    return { [email]: emailFormat.test(email) }
-}
 
 export function validateEmails(emailArray) {
-    return emailArray.map(validateEmails1)
+    const emailFormat =
+        /^[\w+-]+(?:\.[\w+-]+)*@[\da-z]+(?:[.-][\da-z]+)*\.[a-z]{2,}$/iu
+
+    return emailArray.reduce((acc, email) => {
+        acc[email] = emailFormat.test(email)
+        return acc
+    }, {})
 }
