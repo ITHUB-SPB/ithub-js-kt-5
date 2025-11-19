@@ -14,5 +14,15 @@
  * getDateFormat("18.10/22")   // Error: Некорректный формат даты
  */
 export function getDateFormat(date) {
+    const euroRegex = /^\d{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])$/
+    const rusRegex = /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/
+
+    if (euroRegex.test(date)) {
+        return 'Формат даты европейский'
+    } else if (rusRegex.test(date)) {
+        return 'Формат даты российский'
+    } else {
+        throw new Error('Некорректный формат даты')
+    }
     
 }
