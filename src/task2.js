@@ -11,5 +11,12 @@
  * logDate(new Date()) // Сегодня вторник
  */
 export function logDay(date) {
-    
+    const days = date.toLocaleDateString('ru-RU', { weekday: 'long' })
+    const Today = new Date().toDateString() === date.toDateString()
+
+    console.log(
+        Today
+            ? `Сегодня ${days}`
+            : days.charAt(0).toUpperCase() + days.slice(1),
+    )
 }
