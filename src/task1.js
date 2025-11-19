@@ -8,5 +8,10 @@
  * console.log(daysFromMillenium()) // 7638
  */
 export function daysFromMillenium() {
-    return 0
+    const dateold = new Date(2000, 0, 1);
+    const datenow = new Date();
+
+    const diff1 = datenow - dateold;
+    const diff2 = Math.round(diff1 / (1000 * 60 * 60 * 24));
+    return diff2
 }
