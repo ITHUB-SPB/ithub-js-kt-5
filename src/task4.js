@@ -10,7 +10,7 @@
  * console.log(result) // { login: "example", domain: "gmail", zone: "com" }
  */
 export function splitEmail(email) {
-    const split = email.match(/([^@]*)@([^.]*)\.(.*)/)
+    const split = email.match(/([^@]*)@([^/.]*)\.(.*)/)
     return {
         login: split[1],
         domain: split[2],

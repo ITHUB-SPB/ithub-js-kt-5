@@ -15,5 +15,13 @@
  * // Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14
  */
 export function formattedReturn(infoString) {
-    return ''
+    const split = infoString.match(/\[([^\]]*)\]s*([^<]*)<([^>]*)>/)
+    const date = new Date(split[1])
+    const name = split[2]
+    const book = split[3]
+    if (/[А-Яа-яЁё]/.test(name) === true) {
+        return `${name.trim()} вернул(а) "${book}" ${date.toLocaleString()}`
+    } else {
+        return `${name.trim()} returned "${book}" at ${date.toLocaleString('en-US')}`
+    }
 }
