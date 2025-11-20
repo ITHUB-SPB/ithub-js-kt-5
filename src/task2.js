@@ -13,5 +13,10 @@
  *
  */
 export function isLeapDate(isoDate) {
-    return
+    let result = isoDate.substring(0,4)
+    result = Number(result)
+    if (result % 4 === 0 && result % 100 !== 0 || result % 400 === 0) {
+        return true
+    }
+    return false
 }

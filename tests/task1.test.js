@@ -2,7 +2,7 @@ import { expect, test, describe, vi, beforeEach, afterEach } from "vitest";
 import { daysFromMillenium } from "../src/task1";
 
 
-describe("возвращает округленное число дней с начала 2000 года", () => {
+describe("возвращает округленное число дней c начала 2000 года", () => {
   beforeEach(() => {
     vi.useFakeTimers();
   })

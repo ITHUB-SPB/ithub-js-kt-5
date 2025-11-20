@@ -15,5 +15,36 @@
  * // Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14
  */
 export function formattedReturn(infoString) {
-    return ''
+    const match = infoString.match(/\[([^\]]+)\] ([^<]+) <([^>]+)>/);
+    if (!match) return '';
+    
+    const [, dateTime, name, book] = match;
+    
+    
+    const isRussian = /[а-яА-Я]/.test(name);
+    
+    const date = new Date(dateTime);
+    
+    if (isRussian) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        return `${name.trim()} вернул(а) "${book}" ${day}.${month}.${year}, ${hours}:${minutes}:${seconds}`;
+    } else {
+        const options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        
+        const formattedDate = date.toLocaleString('en-US', options);
+        return `${name.trim()} returned "${book}" at ${formattedDate}`;
+    }
 }
