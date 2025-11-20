@@ -24,11 +24,7 @@ export function logDay(date) {
     const dayOfWeek = daysOfWeek[date.getDay()]
 
     const today = new Date()
-    const isToday =
-        date.getDate() === today.getDate() &&
-        date.getMonth() === today.getMonth() &&
-        date.getFullYear() === today.getFullYear()
-
+    const isToday = date.getDate() === today.getDate()
     const result = isToday ? `Сегодня ${dayOfWeek.toLowerCase()}` : dayOfWeek
 
     console.log(result)
