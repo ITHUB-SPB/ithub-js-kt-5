@@ -8,6 +8,10 @@
  * @example
  * console.log(getUnixHours()) // 489780
  */
+
 export function getUnixHours() {
-    return 0
+    const milliseconds1970 = Date.now()
+    const hours1970 = milliseconds1970 / (1000 * 60 * 60)
+    return Math.round(hours1970)
 }
+console.log(getUnixHours())
