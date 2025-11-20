@@ -14,8 +14,8 @@
  */
 export function validateEmails(emailArray) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailArray.reduce((acc, email) => {
-        acc[email] = emailRegex.test(email)
-        return acc
+    return emailArray.reduce((count, email) => {
+        count[email] = emailRegex.test(email)
+        return count
     }, {})
 }

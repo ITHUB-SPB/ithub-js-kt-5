@@ -31,7 +31,7 @@ describe("функция validateEmails", () => {
     const emails = ['top@dot.com', 'abra@gmailcom']
     const expected = [...emails]
 
-    validateEmails(names)
+    validateEmails(emails)
 
     assert.deepEqual(emails, expected)
   })
