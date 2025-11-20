@@ -1,10 +1,7 @@
 export function formatPhones(phones) {
     for (let i = 0; i < phones.length; i++) {
         const phone = phones[i];
-        
-        
-        const plusIndex = phone.indexOf('+');
-        const digits = phone.slice(plusIndex + 1);
+        const digits = phone.slice("+" + 1);
         
         let codeLength = 1;
         if (digits.startsWith('375')) codeLength = 3;
