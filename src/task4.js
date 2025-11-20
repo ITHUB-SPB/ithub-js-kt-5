@@ -4,8 +4,8 @@
  *
  * @description Функция принимает на вход массив строк, потенциально
  * являющихся адресами эл. почты и возвращает объект с информацией о
- * валидности каждого из них. Критерии правильной почты возьмите из 
- * исходного кода (не устанавливая ее, а скопировав нужную строку!) 
+ * валидности каждого из них. Критерии правильной почты возьмите из
+ * исходного кода (не устанавливая ее, а скопировав нужную строку!)
  * любой из популярных библиотек для валидации (zod, valibot).
  *
  * @example
@@ -13,5 +13,10 @@
  * { top@dot.com: true, abra@gmailcom: false , pot.mail.ru: false , grek@pro.pro: true }
  */
 export function validateEmails(emailArray) {
-    return
+    const emailRegex = /^[^@]+@[^@]+\.[^@]+$/
+
+    return emailArray.reduce((acc, email) => {
+        acc[email] = emailRegex.test(email)
+        return acc
+    })
 }
