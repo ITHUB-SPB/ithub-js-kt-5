@@ -2,10 +2,9 @@ export function formatPhones(phones) {
     for (let i = 0; i < phones.length; i++) {
         const phone = phones[i];
         
-        const cleanPhone = phone.replace(/[^\d+]/, '');
         
-        const plusIndex = cleanPhone.indexOf('+');
-        const digits = cleanPhone.slice(plusIndex + 1);
+        const plusIndex = phone.indexOf('+');
+        const digits = phone.slice(plusIndex + 1);
         
         let codeLength = 1;
         if (digits.startsWith('375')) codeLength = 3;
