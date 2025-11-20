@@ -14,5 +14,19 @@
  * getDateFormat("18.10/22")   // Error: Некорректный формат даты
  */
 export function getDateFormat(date) {
-    
+  if (/^\d{4}\/\d{2}\/\d{2}$/.test(date)) {
+    const [_, month, day] = date.split('/')
+    if (month >= '01' && month <= '12' && day >= '01' && day <= '31') {
+      return 'Формат даты европейский'
+    }
+  }
+  
+  if (/^\d{2}\.\d{2}\.\d{4}$/.test(date)) {
+    const [day, month] = date.split('.')
+    if (month >= '01' && month <= '12' && day >= '01' && day <= '31') {
+      return 'Формат даты российский'
+    }
+  }
+  
+  throw new Error('Некорректный формат даты')
 }
