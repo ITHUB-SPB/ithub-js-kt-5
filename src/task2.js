@@ -13,5 +13,10 @@
  *
  */
 export function isLeapDate(isoDate) {
-    return
+    const date1 = new Date(isoDate)
+    const year = date1.getFullYear()
+    if (year % 400 === 0 || year % 4 === 0 && year % 100 !==0) { 
+        return true
+    }
+    return false
 }
