@@ -15,5 +15,48 @@
  * // Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14
  */
 export function formattedReturn(infoString) {
-    return ''
+    const regex = /\[(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})\]\s+(.+?)\s+<(.+)>/;
+
+    const match = infoString.match(regex);
+
+    if (!match) return '';
+    const [, datetime, name, book] = match;
+
+    const isRussian = /[а-яё]/i.test(name);
+
+    const date = new Date(datetime);
+    
+    if (isRussian) {
+        const day = date.getDate().toString().padStart(2, '0');
+
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+        const year = date.getFullYear();
+
+        const hours = date.getHours().toString().padStart(2, '0'); 
+
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+
+        const seconds = date.getSeconds().toString().padStart(2, '0'); //1-31,0-11,####,0-23,0-59,0-59
+
+        return `${name} вернул(а) "${book}" ${day}.${month}.${year}, ${hours}:${minutes}:${seconds}`;
+    } else {
+        const month = date.getMonth() + 1;
+
+        const day = date.getDate();
+
+        const year = date.getFullYear();
+
+        let hours = date.getHours();
+
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+
+        const seconds = date.getSeconds().toString().padStart(2, '0'); //1-12, 1-31, ####, 0-23, 0-59, 0-59
+        
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12 || 12;
+
+        return `${name} returned "${book}" at ${month}/${day}/${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
+    }
 }
