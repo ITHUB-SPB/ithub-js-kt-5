@@ -15,15 +15,14 @@
  */
 export function getDateFormat(date) {
     
-    const europeanFormat = /^\d{4}\/\d{1,2}\/\d{1,2}$/; 
-    const russianFormat = /^\d{1,2}\.\d{1,2}\.\d{4}$/;  
-    
+    const evr = /^\d{4}[\/\-](0[1-9]|1[012])[\/\-](0[1-9]|[12][0-9]|3[01])$/
+    const rus = /^(0[1-9]|[12][0-9]|3[01])[\.](0[1-9]|1[012])[\.]\d{4}$/
 
-    if (europeanFormat.test(date)) {
-        return "Формат даты европейский";
-    } else if (russianFormat.test(date)) {
-        return "Формат даты российский";
+    if (evr.test(date)) {
+        return 'Формат даты европейский'
+    } else if (rus.test(date)) {
+        return 'Формат даты российский'
     } else {
-        throw new Error("Некорректный формат даты");
+        throw new Error('Некорректный формат даты')
     }
 }
