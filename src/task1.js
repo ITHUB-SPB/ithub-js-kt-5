@@ -9,5 +9,8 @@
  * console.log(getUnixHours()) // 489780
  */
 export function getUnixHours() {
-    return 0
+    const now = new Date()
+    const millisecondsSinceEpoch = now.getTime()
+    const hoursSinceEpoch = millisecondsSinceEpoch / (1000 * 60 * 60)
+    return Math.round(hoursSinceEpoch)
 }
