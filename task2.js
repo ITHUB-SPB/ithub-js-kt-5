@@ -43,3 +43,4 @@ export function logDay(date) {
     
     return dayName;
 }
+
