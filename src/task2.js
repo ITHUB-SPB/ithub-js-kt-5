@@ -14,7 +14,7 @@
  */
 export function logDay(date) {
     const today = new Date()
-    const day = date.toLocaleDateString('ru', { weekday: 'long' })
+    const day = date.toLocaleDateString('ru', { weekday: 'long' }) /* получаем день недели*/
 
     if (today.getTime() === date.getTime()) {
         console.log(`Сегодня ${day}`)
