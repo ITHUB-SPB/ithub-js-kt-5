@@ -14,7 +14,7 @@
     const regex = /^\+?(\d{1,3})(\d{3})(\d{3})(\d{2})(\d{2})$/;
 
     for (let i = 0; i < phones.length; i++) {
-        const phone = phones[i].replace(/[^+\d]/g, ''); // Оставляем только значащие символы (+ и цифры)
+        const phone = phones[i].replace(/[^+\d]/g, ''); //оставляет + и цифры
 
         const match = phone.match(regex);
         if (match) {
