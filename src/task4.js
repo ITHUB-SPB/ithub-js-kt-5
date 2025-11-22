@@ -18,5 +18,5 @@ export function validateEmails(emailArray) {
     return emailArray.reduce((acc, email) => {
         acc[email] = emailRegex.test(email)
         return acc
-    })
+    }{})
 }
