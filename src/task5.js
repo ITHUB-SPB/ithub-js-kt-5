@@ -20,7 +20,7 @@ export function formattedReturn(infoString) {
     const match = infoString.match(regex);
 
     if (!match) return '';
-    const [, datetime, name, book] = match;
+    const [, datetime, name, book] = match; //извлекает
 
     const isRussian = /[а-яё]/i.test(name);
 
@@ -37,7 +37,7 @@ export function formattedReturn(infoString) {
 
         const minutes = date.getMinutes().toString().padStart(2, '0');
 
-        const seconds = date.getSeconds().toString().padStart(2, '0'); //1-31,0-11,####,0-23,0-59,0-59
+        const seconds = date.getSeconds().toString().padStart(2, '0'); //извл 1-31,0-11,####,0-23,0-59,0-59
 
         return `${name} вернул(а) "${book}" ${day}.${month}.${year}, ${hours}:${minutes}:${seconds}`;
     } else {
@@ -51,7 +51,7 @@ export function formattedReturn(infoString) {
 
         const minutes = date.getMinutes().toString().padStart(2, '0');
 
-        const seconds = date.getSeconds().toString().padStart(2, '0'); //1-12, 1-31, ####, 0-23, 0-59, 0-59
+        const seconds = date.getSeconds().toString().padStart(2, '0'); //извл 1-12, 1-31, ####, 0-23, 0-59, 0-59
         
         const ampm = hours >= 12 ? 'PM' : 'AM';
 
