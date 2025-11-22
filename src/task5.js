@@ -28,7 +28,6 @@ export function formattedReturn(infoString) {
     const isRussian = /[а-яё]/i.test(name);
     
     if (isRussian) {
-        // Русская локализация
         const formattedDate = date.toLocaleDateString('ru-RU');
         const formattedTime = date.toLocaleTimeString('ru-RU');
         
@@ -36,7 +35,6 @@ export function formattedReturn(infoString) {
         
         return `${name} ${verb} "${bookTitle}" ${formattedDate}, ${formattedTime}`;
     } else {
-        // Английская локализация
         const formattedDate = date.toLocaleDateString('en-US');
         const formattedTime = date.toLocaleTimeString('en-US');
         
