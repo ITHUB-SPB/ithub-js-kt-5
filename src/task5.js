@@ -15,5 +15,31 @@
  * // Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14
  */
 export function formattedReturn(infoString) {
-    return ''
+    const regex = /\[(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})\]\s+(.+?)\s+<(.+)>/;
+    const match = infoString.match(regex);
+    
+    if (!match) {
+        return infoString;
+    }
+    
+    const [, dateTimeStr, name, bookTitle] = match;
+    const date = new Date(dateTimeStr);
+    
+    const isRussian = /[а-яё]/i.test(name);
+    
+    if (isRussian) {
+        // Русская локализация
+        const formattedDate = date.toLocaleDateString('ru-RU');
+        const formattedTime = date.toLocaleTimeString('ru-RU');
+        
+        const verb = name.endsWith('а') ? 'вернула' : 'вернул(а)';
+        
+        return `${name} ${verb} "${bookTitle}" ${formattedDate}, ${formattedTime}`;
+    } else {
+        // Английская локализация
+        const formattedDate = date.toLocaleDateString('en-US');
+        const formattedTime = date.toLocaleTimeString('en-US');
+        
+        return `${name} returned "${bookTitle}" at ${formattedDate}, ${formattedTime}`;
+    }
 }
