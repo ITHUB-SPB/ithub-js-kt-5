@@ -16,5 +16,15 @@
  * console.log(secondOccurenceInterval("поиск по главе", text)) // null
  */
 export function secondOccurenceInterval(substring, text) {
-    return
+    const firstIndex = text.indexOf(substring)
+    const secondIndex = text.indexOf(substring, firstIndex + substring.length)
+
+    if (firstIndex === -1 || secondIndex === -1) {
+        return null
+    }
+
+    return {
+        from: secondIndex,
+        to: secondIndex + substring.length - 1
+    }
 }
