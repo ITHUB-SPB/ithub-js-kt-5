@@ -15,95 +15,29 @@
  * // Михаил Ландау вернул(а) "Уроки пения" 20.11.2025, 12:12:14
  */
 export function formattedReturn(infoString) {
-    // Создаем регулярное выражение для разбора входной строки
-    // \[ - ищем открывающую квадратную скобку (экранированную)
-    // (\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}) - 1-я группа: дата-время в формате ГГГГ-ММ-ДДTЧЧ:ММ:СС
-    // \] - закрывающая квадратная скобка
-    // \s+ - один или более пробельных символов
-    // (.+?) - 2-я группа: имя (любые символы, минимальное количество)
-    // \s+ - один или более пробельных символов
-    // < - открывающая угловая скобка
-    // (.+) - 3-я группа: название книги (любые символы)
-    // > - закрывающая угловая скобка
     const regex = /\[(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})\]\s+(.+?)\s+<(.+)>/;
-    
-    // Применяем регулярное выражение к входной строке
-    // match будет содержать массив с результатами совпадения или null
     const match = infoString.match(regex);
     
-    // Если совпадение не найдено, возвращаем пустую строку
-    if (!match) return '';
+    if (!match) {
+        return infoString;
+    }
     
-    // Деструктурируем массив match:
-    // match[0] - полное совпадение (пропускаем с помощью запятой)
-    // match[1] - дата-время (присваиваем в datetime)
-    // match[2] - имя (присваиваем в name)
-    // match[3] - название книги (присваиваем в book)
-    const [, datetime, name, book] = match;
+    const [, dateTimeStr, name, bookTitle] = match;
+    const date = new Date(dateTimeStr);
     
-    // Определяем локаль: проверяем, содержит ли имя кириллические символы
-    // [а-яё] - диапазон кириллических символов (включая букву ё)
-    // i - флаг case-insensitive (независимо от регистра)
-    // test(name) - проверяет, есть ли в строке name кириллические символы
     const isRussian = /[а-яё]/i.test(name);
     
-    // Создаем объект Date из строки datetime
-    const date = new Date(datetime);
-    
-    // Если определили русскую локаль
     if (isRussian) {
-        // Получаем день месяца (1-31) и форматируем в 2 цифры с ведущим нулем
-        const day = date.getDate().toString().padStart(2, '0');
+        const formattedDate = date.toLocaleDateString('ru-RU');
+        const formattedTime = date.toLocaleTimeString('ru-RU');
         
-        // Получаем месяц (0-11), прибавляем 1 (т.к. месяцы с 0), форматируем в 2 цифры
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const verb = name.endsWith('а') ? 'вернула' : 'вернул(а)';
         
-        // Получаем полный год (4 цифры)
-        const year = date.getFullYear();
-        
-        // Получаем часы (0-23) и форматируем в 2 цифры
-        const hours = date.getHours().toString().padStart(2, '0');
-        
-        // Получаем минуты (0-59) и форматируем в 2 цифры
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        
-        // Получаем секунды (0-59) и форматируем в 2 цифры
-        const seconds = date.getSeconds().toString().padStart(2, '0');
-        
-        // Собираем итоговую строку в русском формате:
-        // Имя + "вернул(а)" + название книги в кавычках + дата в формате ДД.ММ.ГГГГ + время в 24-часовом формате
-        return `${name} вернул(а) "${book}" ${day}.${month}.${year}, ${hours}:${minutes}:${seconds}`;
+        return `${name} ${verb} "${bookTitle}" ${formattedDate}, ${formattedTime}`;
     } else {
-        // Английская локаль
+        const formattedDate = date.toLocaleDateString('en-US');
+        const formattedTime = date.toLocaleTimeString('en-US');
         
-        // Получаем месяц (1-12)
-        const month = date.getMonth() + 1;
-        
-        // Получаем день месяца (1-31)
-        const day = date.getDate();
-        
-        // Получаем полный год (4 цифры)
-        const year = date.getFullYear();
-        
-        // Получаем часы (0-23)
-        let hours = date.getHours();
-        
-        // Получаем минуты (0-59) и форматируем в 2 цифры
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        
-        // Получаем секунды (0-59) и форматируем в 2 цифры
-        const seconds = date.getSeconds().toString().padStart(2, '0');
-        
-        // Определяем AM/PM: если часы >= 12, то PM, иначе AM
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        
-        // Конвертируем часы в 12-часовой формат:
-        // hours % 12 - остаток от деления на 12 (0-11)
-        // || 12 - если остаток 0, то используем 12 (для 12:00, 24:00)
-        hours = hours % 12 || 12;
-        
-        // Собираем итоговую строку в английском формате:
-        // Имя + "returned" + название книги в кавычках + "at" + дата в формате ММ/ДД/ГГГГ + время в 12-часовом формате + AM/PM
-        return `${name} returned "${book}" at ${month}/${day}/${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
+        return `${name} returned "${bookTitle}" at ${formattedDate}, ${formattedTime}`;
     }
 }
