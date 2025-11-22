@@ -25,7 +25,7 @@
             const group3 = match[5];
 
             
-            phones[i] = `+${countryCode} (${areaCode}) ${group1}-${group2}-${group3}`;
+            phones[i] = `${countryCode} (${areaCode}) ${group1}-${group2}-${group3}`;
         }
     }
 }
