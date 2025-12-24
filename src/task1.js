@@ -9,5 +9,7 @@
  * console.log(getUnixHours()) // 489780
  */
 export function getUnixHours() {
-    return 0
+    const millisecondsPerHour = 3600 * 1000;
+    const hoursSinceUnixEpoch = Date.now() / millisecondsPerHour;
+    return Math.round(hoursSinceUnixEpoch)
 }
